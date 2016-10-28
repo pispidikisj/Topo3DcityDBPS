@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<!--
+ | Copyright 2015 Pispidikis john
+ |
+ | Licensed under the   GNU GENERAL PUBLIC LICENSE  Version 3
+ | you may not use this file except in compliance with the License.
+ |
+ |
+ | Unless required by applicable law or agreed to in writing, software
+ | distributed under the License is distributed on an "AS IS" BASIS,
+ | WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ | See the License for the specific language governing permissions and
+ | limitations under the License.
+-->
+
+
+<?xml version='1.0' encoding='UTF-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index, all" />
+    <link rel="icon" href="images/iconmy.gif" type="image/x-icon">
+    <title>Topo3DcityDBPS</title>
+    <link rel="stylesheet" href="css/mywebapp.css" type="text/css">
+    <link rel="stylesheet" href="css/ol.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/style_login.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/application.css" />
+    <link rel="stylesheet" type="text/css" href="css/sky-forms.css" />
+   <!-- <link rel="stylesheet" type="text/css" href="css/sky-forms-black.css" />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet-pure-css.css" />-->
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.11.4/jquery-ui.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="lib/colorpicker/css/colorpicker.css"  />
+    <link rel="stylesheet" type="text/css" href="lib/msDropdown/css/msdropdown/dd.css" />
+
+     <link rel="stylesheet" href="lib/modalwindow/windowfiles/dhtmlwindow.css" type="text/css" />
+    <script type="text/javascript">	
+      	var userConfig={};	
+    </script>
+     <script type="text/javascript" src="lib/jscolor/jscolor.js"></script>
+     <script type="text/javascript" src="lib/modalwindow/windowfiles/dhtmlwindow.js"></script>
+     <link rel="stylesheet" href="lib/modalwindow/modalfiles/modal.css" type="text/css" />
+     <!-- <script type="text/javascript" src="lib/modalwindow/modalfiles/modal.js"></script>-->
+     <script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+     <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
+    <!-- <script src="lib/msDropdown/js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>-->
+
+</head>
+<body >
+	
+ <div id="map" class="map" style="cursor:default">
+ 	<div id="mylogo" style="top: 5px; left: 7px; position: absolute;"><img style="width: 190px;" src="images/mylogo.gif"/></div><!--dont remove-->
+ 	 <div><img id="imgBLLOADING" src="images/mylogo.gif" style="width:190px;position:absolute; right:46%; top:49%; opacity: 60%;"/>
+ 	 	<img id="imgIDmapLOADING" src="images/loader3.gif" style="width:70px; height:70px; position:absolute; right:50%; top:50%;"/>
+ 	 	    
+ 	 </div>
+     <div>
+     	<h1 id="ff-proof2" class="ribbonTitle" style="height: 55px">3D WEBGIS SYSTEM fOR CITYGML
+     	   <img src="images/emp.png" width="40" height="40" style="position: absolute;top:5px;right: 7px;"/>
+     	</h1>
+     </div>
+     <div id="ff-proof2" class="ribbonTitle2" style="height: 30px">
+
+     <div id="menuListCon">
+     	
+     		<div id="topMenuLeft">
+     		</div>
+     		
+     		<div id="topMenuCenter">2D view
+     		</div>
+     		
+     		<div id="topMenuRight">
+     		</div>
+     </div> 
+     </div>
+     <div class="baselayers" id="baselayers"> </div>
+     <div class="overlayers" id="overlayers"> </div>
+     <div class="terrains" id="terrains" > </div>
+     <div class="queries" id="queries" ><hr>
+      <span id="lodbuilding" >Select lod: 
+      	<select id="selectedlodspatialquery" style="cursor:pointer;" onchange="checkandselectlodforquery(this)">
+      		<option value="0">select lod</option>
+      		<option value="2">lod2</option>
+      		<option value="3">lod3</option>
+      		<option value="4">lod4</option>
+      		</select>
+      </span><hr>
+
+     	<select  id="selectedquery" style="cursor:pointer;width: 150px;visibility: hidden" onchange="spatialqueryexecute(this)">
+     	   <option value="Select">[Select]</option> 
+     	   <option value="Point">Point</option>
+           <option value="Polygon">Polygon</option>
+       <!--        <option value="Box" data-image='images/Box.jpg'>Box</option>
+       <option value="Square" data-image='images/Box.jpg'>Box</option>-->
+       </select>
+      </div>
+     <div class="ThreedcityDBConnect" id="ThreedcityDBConnect"> </div>
+     <div class="sidebysideconnect" id="sidebysideconnect">
+     	
+     </div>
+     <div id="map3d"><b>3D VIEW</b><hr><div id="map3dmap"></div></div>
+     <div class="SpatialqueriesConnect" id="SpatialqueriesConnect" style="min-width: 250px" > </div>
+     <div class="connecitonlayer" id="connecitonlayer"> </div>
+      <div class="connecitonlayerOGC" id="connecitonlayerOGC"> </div>
+     <div class="openinglayer" id="openinglayer" style="min-width: 250px"> </div>
+     <div class="installationlayer" id="installationlayer" style="min-width: 250px"> </div>
+     <div class="furniturelayer" id="furniturelayer" style="min-width: 250px"> </div>
+     <div class="roomlayer" id="roomlayer" style="min-width: 250px"> </div>
+     <div class="infolayer" id="infolayer" style="min-width: 390px;"> </div>
+     <div class="googlestreetview" id="googlestreetview" style="min-width: 390px;"> </div>	
+      <div class="googlestreet" id="googlestreet" style="min-width: 390px;"> </div>	
+     
+     
+     <div class="buidingquery" id="buidingquery" style="min-width: 250px">
+     	  <div id="querydiv"></div>
+            
+     </div>	
+     <div id="messagealert"> </div>	
+      <div id="showstreetviewmesssage"> </div>	
+     <div id="changestyleoflayer" style="display: none"> <input type="hidden" autofocus="true">
+     
+     	<table>
+     		<tr>
+     	        <td>change fill color  : </td><td><input onchange="changeinputfillcolor(this)" id="changefillcolor"  class='color' type='text' autofocus="false" value=''></td>
+     	   </tr>
+     	    <tr>
+     	        <td>change stroke color: </td><td><input id="changestrokecolor" onchange="changeinputstrokecolor(this)" class='color' type='text' autofocus="false" value=''></td>
+     <!--	<div style="text-align: right"><button id="styleokbutton" onclick="changethestyle(userConfig.style.currentlayerid,userConfig.style.fillcolor,userConfig.style.strokecolor)" class="mapButton">ok</button><button id="stylecancelbutton" class="mapButton">close</button></div>-->
+     	    </tr>
+     	   </table>
+     	
+     	</div>	
+
+     <!--dont remove-->
+     <div class="aboutme"><center> ©   2016 - N.T.U.A-PISPIDIKIS IOANNIS-2D/3D WEBGIS</center>
+
+     </div>
+ </div>
+   <div id="popupinformation"></div> 
+   <div  id="coords" > </div>
+
+
+<!--new library-->
+<script src="lib/externalapi/ol3cesium111/Cesium/Cesium.js"></script>
+<script src="lib/externalapi/ol3cesium111/ol3cesium.js"></script>
+
+  <script type="text/javascript" src="lib/styles.js"></script>
+  <script type="text/javascript" src="lib/userinterface.js"></script>
+  
+  <script type="text/javascript" src="lib/functionbuilding.js"></script>
+  <script type="text/javascript" src="lib/functionBuildOpening.js"></script>
+  <script type="text/javascript" src="lib/functionBuildRoom.js"></script>
+   <script type="text/javascript" src="lib/functionAddbyquery.js"></script>
+   <script type="text/javascript" src="lib/functionInfoBuild.js"></script>
+   <script type="text/javascript" src="lib/functionBuildInstallation.js"></script>
+   <script type="text/javascript" src="lib/functionBuildFurniture.js"></script> 
+   <script type="text/javascript" src="lib/OGCfunction.js"></script> 
+<!-- <script type="text/javascript" src="lib/wfsconnection.js"></script>-->
+  <script src="lib/ol3-extra-controls.js"></script>
+  <script src="lib/mytools.js"></script>
+  <script type="text/javascript" src="lib/baselayer.js"></script>
+  <script type="text/javascript" src="lib/overlayers.js"></script>
+  <script src="lib/terrainprovider.js"></script>
+  <script type="text/javascript" src="lib/main.js"></script>
+  <script src="lib/map.js"></script>
+  <script src="lib/mapfunction.js"></script>
+     <script type="text/javascript" src="lib/spatialquery.js"></script> 
+  <script type="text/javascript">
+      init();   	
+  </script>
+    
+    
+</body>
+</html>
+
