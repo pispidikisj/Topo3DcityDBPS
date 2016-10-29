@@ -1,5 +1,5 @@
 # Topo3DcityDBPS
-Create 3D WebGIS system for 3DcityDB base on PostGIS and ol3-cesium
+3D WebGIS system for 3DcityDB base on PostGIS and ol3-cesium
 
 Please see the following demo-video:
 
